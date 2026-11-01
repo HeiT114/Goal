@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/heit-233/goal/main/docs/screenshots/windows-home.png" width="880" alt="goal 电脑端主页">
-
 # goal
 
 **把目标，做小一点。**
@@ -9,12 +7,12 @@
 免费、离线、可扩展的任务计划软件  
 Windows 10 / 11 · Android 8.0+
 
-[![version](https://img.shields.io/badge/version-1.0.0-D9653B?style=flat-square)](https://github.com/heit-233/goal/releases/tag/v1.0.0)
+[![version](https://img.shields.io/badge/version-1.0.0-D9653B?style=flat-square)](https://github.com/HeiT114/Goal/releases/tag/Goal-1.0.0)
 [![Windows](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4?style=flat-square)](#下载)
 [![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?style=flat-square)](#下载)
 [![offline](https://img.shields.io/badge/offline--first-4C8C6A?style=flat-square)](#数据与隐私)
 
-[下载](#下载) · [功能](#功能) · [截图](#截图) · [插件](#插件) · [隐私](#数据与隐私) · [完整文档](docs/README.md)
+[下载](#下载) · [功能](#功能) · [插件](#插件) · [隐私](#数据与隐私) · [完整文档](docs/README.md)
 
 </div>
 
@@ -24,10 +22,10 @@ Windows 10 / 11 · Android 8.0+
 
 | 平台 | 文件 | 说明 |
 | --- | --- | --- |
-| **Windows 10 / 11 x64** | [goal-1.0.0-setup.exe](https://github.com/heit-233/goal/releases/download/v1.0.0/goal-1.0.0-setup.exe) | 安装版，约 42 MB；创建开始菜单快捷方式，可在“应用和功能”中卸载 |
-| **Android 8.0+** | [goal-1.0.0.apk](https://github.com/heit-233/goal/releases/download/v1.0.0/goal-1.0.0.apk) | 约 87 KB；使用同一签名密钥，可直接覆盖安装旧版 |
+| **Windows 10 / 11 x64** | [goal-1.0.0-setup.exe](https://github.com/HeiT114/Goal/releases/download/Goal-1.0.0/goal-1.0.0-setup.exe) | 安装版，约 42 MB；创建开始菜单快捷方式，可在“应用和功能”中卸载 |
+| **Android 8.0+** | [goal-1.0.0.apk](https://github.com/HeiT114/Goal/releases/download/Goal-1.0.0/goal-1.0.0.apk) | 约 87 KB；使用同一签名密钥，可直接覆盖安装旧版 |
 
-> 校验值见 [SHA256SUMS.txt](https://github.com/heit-233/goal/releases/download/v1.0.0/SHA256SUMS.txt)。
+> 校验值见 [SHA256SUMS.txt](https://github.com/HeiT114/Goal/releases/download/Goal-1.0.0/SHA256SUMS.txt)。
 >
 > 安装包未做商业代码签名，Windows SmartScreen 可能提示“未知发布者”。选择“更多信息 → 仍要运行”即可。安装为当前用户级别，不需要管理员权限。
 
@@ -80,20 +78,6 @@ Windows 10 / 11 · Android 8.0+
 
 ---
 
-## 截图
-
-<div align="center">
-
-<img src="https://raw.githubusercontent.com/heit-233/goal/main/docs/screenshots/windows-home.png" width="48%" alt="主页">
-<img src="https://raw.githubusercontent.com/heit-233/goal/main/docs/screenshots/windows-editor.png" width="48%" alt="编辑计划">
-
-<img src="https://raw.githubusercontent.com/heit-233/goal/main/docs/screenshots/windows-plugins.png" width="48%" alt="插件">
-<img src="https://raw.githubusercontent.com/heit-233/goal/main/docs/screenshots/windows-settings.png" width="48%" alt="设置">
-
-</div>
-
----
-
 ## 数据与隐私
 
 - 没有账号、广告、云同步、遥测，也没有付费功能。
@@ -131,50 +115,6 @@ Windows 10 / 11 · Android 8.0+
 dotnet publish windows/Goal/Goal.csproj -c Release -r win-x64 --self-contained true `
   -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true `
   -p:DebugType=embedded -o publish/win-x64
-```
-
-生成安装包需要 [Inno Setup 6](https://jrsoftware.org/isinfo.php)：
-
-```powershell
-ISCC.exe installer\goal.iss
-```
-
-### Android
-
-需要 JDK 17、Android SDK 34 和 Gradle 8.9。
-
-```bash
-cd android
-gradle assembleRelease
-```
-
-签名配置从 `android/keystore.properties` 读取（该文件不提交仓库）；首次构建请按 [docs/README.md](docs/README.md) 填写，发布前请替换为你自己的 keystore。
-
----
-
-## 已知限制
-
-- Windows 安装包未做代码签名，SmartScreen 可能提示未知发布者。
-- Android 的每日提醒使用系统闹钟；开启省电限制或“强行停止”后，提醒可能延迟，直到下次打开应用或重启。
-- 材料只在本机，不随 JSON 备份迁移；换设备后需要重新添加。
-- 更新清单地址默认指向 `heit-233/goal`。Fork 后请同时修改两端代码中的仓库地址和 `update.json` 下载地址。
-- 没有账号与云同步；多设备之间请手动导出 / 导入 JSON。
-
----
-
-## 版本 1.0.0
-
-- 第一个公开版本：提交 / 时长 / 变化三种完成方式与一键完成。
-- 提交材料、每日到期提醒、六套主题、深色模式、自定义强调色。
-- 声明式插件面板，本地安装、默认关闭、域名白名单。
-- 单份可读 JSON 导出 / 导入，支持覆盖与合并。
-- 本次发布补充：Windows 安装包、单实例保护、窗口位置记忆、减小自动保存写入、保存失败提示、Android 材料直接打开、标签页状态恢复。
-
----
-
-<div align="center">
-
-**goal** · 把目标，做小一点。
 
 如果这个项目对你有帮助，欢迎在 GitHub 点一个 Star。
 
