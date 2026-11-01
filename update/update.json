@@ -1,0 +1,12 @@
+{
+  "windows": {
+    "version": "1.0.0",
+    "notes": "1.0.0 正式版：新增 Windows 安装包、单实例保护、窗口位置记忆，完善提交材料与保存可靠性。",
+    "url": "https://github.com/heit-233/goal/releases/download/v1.0.0/goal-1.0.0-setup.exe"
+  },
+  "android": {
+    "version": "1.0.0",
+    "notes": "1.0.0 正式版：支持 Android 8.0 及以上；材料可在系统应用中打开；与电脑端共用备份格式。",
+    "url": "https://github.com/heit-233/goal/releases/download/v1.0.0/goal-1.0.0.apk"
+  }
+}

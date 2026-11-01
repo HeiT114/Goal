@@ -1,0 +1,16 @@
+{
+  "type": "goal-panel",
+  "title": "一天的专注节奏",
+  "subtitle": "三个小步骤，把注意力放回今天。",
+  "accent": "#D9653B",
+  "blocks": [
+    { "type": "heading", "text": "先做最重要的一件事" },
+    { "type": "text", "text": "在开始之前，先决定今天唯一必须完成的事情。它不必宏大，但要具体到可以立刻动手。" },
+    { "type": "quote", "text": "把目标做小一点，小到不会失败。" },
+    { "type": "divider" },
+    { "type": "checklist", "title": "开始前", "items": ["关掉不必要的通知", "准备一杯水", "把手机放到看不见的地方"] },
+    { "type": "addTask", "title": "25 分钟专注", "taskTitle": "25 分钟专注", "label": "添加为时长计划", "taskMode": "duration", "target": 25, "unit": "分钟" },
+    { "type": "text", "text": "完成后回到主页，点一下「开始」即可计时。时长达到 25 分钟后，计划会自动进入已完成。" },
+    { "type": "link", "text": "项目主页", "label": "在浏览器中打开", "url": "https://github.com/heit-233/goal" }
+  ]
+}

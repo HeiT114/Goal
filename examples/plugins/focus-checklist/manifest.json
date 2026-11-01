@@ -1,0 +1,10 @@
+{
+  "id": "goal.focus-checklist",
+  "name": "专注清单",
+  "version": "1.0.0",
+  "author": "goal 示例",
+  "entry": "panel.json",
+  "description": "README.md",
+  "network": ["github.com"],
+  "homepage": "https://github.com/heit-233/goal"
+}

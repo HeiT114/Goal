@@ -1,0 +1,101 @@
+<UserControl x:Class="Goal.Controls.TaskCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:Goal.Converters"
+             mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <UserControl.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+    <Border x:Name="Card" Style="{StaticResource CardStyle}" Margin="0,0,0,12" Padding="18,17,18,16">
+        <Border.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="编辑计划" Click="Edit_Click"/>
+                <MenuItem x:Name="ToggleMenuItem" Header="一键完成" Click="ToggleMenuItem_Click"/>
+                <Separator/>
+                <MenuItem Header="删除计划" Click="Delete_Click" Foreground="{DynamicResource DangerBrush}"/>
+            </ContextMenu>
+        </Border.ContextMenu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="46"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="DoneButton" Width="36" Height="36" VerticalAlignment="Top" Cursor="Hand"
+                    Background="Transparent" BorderThickness="0" FocusVisualStyle="{x:Null}" Click="DoneButton_Click"
+                    ToolTip="切换完成状态">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Width="36" Height="36">
+                            <Ellipse x:Name="Ring" Stroke="{DynamicResource LineBrush}" StrokeThickness="1.6" Fill="Transparent"/>
+                            <Ellipse x:Name="Fill" Fill="{DynamicResource AccentBrush}" Opacity="0" Margin="2"/>
+                            <TextBlock x:Name="Check" Text="&#xE73E;" FontFamily="{StaticResource IconFont}" FontSize="15"
+                                       Foreground="{DynamicResource OnAccentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Ring" Property="Stroke" Value="{DynamicResource AccentBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <StackPanel Grid.Column="1" Margin="8,0,14,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="TitleText" Text="{Binding Title}" FontSize="15.5" FontWeight="SemiBold" Foreground="{DynamicResource InkBrush}"
+                               TextTrimming="CharacterEllipsis" VerticalAlignment="Center" MaxWidth="520"/>
+                    <Border Style="{StaticResource ModeBadge}" Margin="10,1,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding ModeLabel}" FontSize="10.5" FontWeight="SemiBold" Foreground="{DynamicResource AccentDeepBrush}"/>
+                    </Border>
+                    <Border x:Name="DoneBadge" Background="{DynamicResource SuccessBrush}" CornerRadius="7" Padding="8,3" Margin="8,1,0,0"
+                            VerticalAlignment="Center" Visibility="Collapsed">
+                        <TextBlock Text="已完成" FontSize="10.5" FontWeight="SemiBold" Foreground="White"/>
+                    </Border>
+                </StackPanel>
+                <TextBlock x:Name="NoteText" Text="{Binding Note}" Style="{StaticResource MutedText}" Margin="0,5,0,0"
+                           TextTrimming="CharacterEllipsis" MaxHeight="42" TextWrapping="Wrap"/>
+                <StackPanel Orientation="Horizontal" Margin="0,9,0,0">
+                    <TextBlock x:Name="StatusText" Text="{Binding StatusLine}" Style="{StaticResource SmallMutedText}"/>
+                    <TextBlock Text="  ·  " Style="{StaticResource SmallMutedText}"/>
+                    <TextBlock Text="{Binding ProgressLabel}" Style="{StaticResource SmallMutedText}"/>
+                </StackPanel>
+                <TextBlock x:Name="ProofText" ToolTip="{Binding ProofSummary}"
+                           Style="{StaticResource SmallMutedText}" Foreground="{DynamicResource AccentDeepBrush}"
+                           Margin="0,7,0,0" Cursor="Hand" MouseLeftButtonUp="ProofText_MouseLeftButtonUp"/>
+                <ProgressBar x:Name="TaskProgress" Style="{StaticResource SlimProgress}" Margin="0,10,0,0"
+                             Value="{Binding Percent, Mode=OneWay}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,11,0,0">
+                    <Button x:Name="TimerButton" Style="{StaticResource SoftButton}" Padding="13,7" Click="TimerButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="TimerGlyph" Text="&#xE768;" FontFamily="{StaticResource IconFont}" FontSize="11" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="TimerLabel" Text="开始计时" Margin="6,0,0,0" FontSize="12" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <StackPanel x:Name="VariationActions" Orientation="Horizontal">
+                        <Button Style="{StaticResource RoundIconButton}" Width="30" Height="30" Click="Minus_Click" ToolTip="减少">
+                            <TextBlock Text="&#xE738;" FontFamily="{StaticResource IconFont}" FontSize="11"/>
+                        </Button>
+                        <TextBlock Text="{Binding Progress}" FontSize="13" FontWeight="SemiBold" Foreground="{DynamicResource InkBrush}"
+                                   VerticalAlignment="Center" Margin="8,0" MinWidth="20" TextAlignment="Center"/>
+                        <Button Style="{StaticResource RoundIconButton}" Width="30" Height="30" Click="Plus_Click" ToolTip="增加">
+                            <TextBlock Text="&#xE710;" FontFamily="{StaticResource IconFont}" FontSize="11"/>
+                        </Button>
+                    </StackPanel>
+                    <Button x:Name="SubmitButton" Style="{StaticResource SoftButton}" Padding="13,7" Click="SubmitButton_Click"
+                            ToolTip="选择文件、视频、音频或图片后完成">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE73E;" FontFamily="{StaticResource IconFont}" FontSize="11" VerticalAlignment="Center"/>
+                            <TextBlock Text="提交完成" Margin="6,0,0,0" FontSize="12" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="OneKeyButton" Style="{StaticResource TextButton}" Padding="10,7" Click="OneKeyButton_Click"
+                            Foreground="{DynamicResource MutedBrush}" ToolTip="不经过完成方式，直接标记为完成">
+                        <TextBlock Text="一键完成" FontSize="11.5"/>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</UserControl>

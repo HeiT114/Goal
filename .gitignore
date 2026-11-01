@@ -1,0 +1,27 @@
+# Windows / .NET
+**/bin/
+**/obj/
+publish/
+test/
+.vs/
+*.user
+
+# Android
+android/local.properties
+android/keystore.properties
+android/keystore/
+**/build/
+
+# Release binaries: upload these as GitHub Release assets instead of committing them
+/artifacts/*.exe
+/artifacts/*.apk
+/goal.exe
+/goal.apk
+/goal-*-setup.exe
+/goal-*.apk
+
+# OS / logs
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log

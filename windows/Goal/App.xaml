@@ -1,0 +1,43 @@
+<Application x:Class="Goal.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="BgBrush" Color="#F6F2EA"/>
+            <SolidColorBrush x:Key="SidebarBrush" Color="#FBF8F2"/>
+            <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFDF9"/>
+            <SolidColorBrush x:Key="Surface2Brush" Color="#F1EBE2"/>
+            <SolidColorBrush x:Key="InkBrush" Color="#211E19"/>
+            <SolidColorBrush x:Key="MutedBrush" Color="#7C7468"/>
+            <SolidColorBrush x:Key="LineBrush" Color="#E8E0D5"/>
+            <SolidColorBrush x:Key="AccentBrush" Color="#D9653B"/>
+            <SolidColorBrush x:Key="AccentDeepBrush" Color="#A94A2B"/>
+            <SolidColorBrush x:Key="AccentSoftBrush" Color="#F8E3D9"/>
+            <SolidColorBrush x:Key="AccentUltraSoftBrush" Color="#FCF3EE"/>
+            <SolidColorBrush x:Key="SuccessBrush" Color="#4C8C6A"/>
+            <SolidColorBrush x:Key="DangerBrush" Color="#BF5353"/>
+            <SolidColorBrush x:Key="WhiteBrush" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="OnAccentBrush" Color="#FFFFFF"/>
+            <SolidColorBrush x:Key="ScrimBrush" Color="#960A0806"/>
+            <LinearGradientBrush x:Key="BgGradientBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#F6F2EA" Offset="0"/>
+                <GradientStop Color="#F3EDE4" Offset="1"/>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="AccentGradientBrush" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#D9653B" Offset="0"/>
+                <GradientStop Color="#A94A2B" Offset="1"/>
+            </LinearGradientBrush>
+            <RadialGradientBrush x:Key="AmbientGlowBrush" GradientOrigin="0.7,0.15" Center="0.7,0.15" RadiusX="0.8" RadiusY="0.8">
+                <GradientStop Color="#28D9653B" Offset="0"/>
+                <GradientStop Color="#00D9653B" Offset="1"/>
+            </RadialGradientBrush>
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+            <converters:BoolToVisibilityConverter xmlns:converters="clr-namespace:Goal.Converters" x:Key="BoolToVis"/>
+            <converters:CountToVisibilityConverter xmlns:converters="clr-namespace:Goal.Converters" x:Key="CountToVis"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

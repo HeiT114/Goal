@@ -1,0 +1,97 @@
+<UserControl x:Class="Goal.Views.TaskEditorDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="590">
+    <Border Style="{StaticResource CardStyle}" Padding="0" Background="{DynamicResource SurfaceBrush}">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="42" ShadowDepth="14" Direction="270" Opacity="0.22" Color="#000000"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="26,24,20,0">
+                <StackPanel>
+                    <TextBlock x:Name="HeaderText" Text="新建计划" Style="{StaticResource H1Text}"/>
+                </StackPanel>
+                <Button Style="{StaticResource RoundIconButton}" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Cancel_Click">
+                    <TextBlock Text="&#xE711;" FontFamily="{StaticResource IconFont}" FontSize="11"/>
+                </Button>
+            </Grid>
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" MaxHeight="540" Margin="0,18,0,0">
+                <StackPanel Margin="26,0,26,0">
+                    <TextBlock Text="计划名称" Style="{StaticResource SmallMutedText}" Margin="2,0,0,6"/>
+                    <TextBox x:Name="TitleBox" Style="{StaticResource InputBox}" FontSize="14" MaxLength="80"/>
+
+                    <TextBlock Text="备注" Style="{StaticResource SmallMutedText}" Margin="2,16,0,6"/>
+                    <TextBox x:Name="NoteBox" Style="{StaticResource MultilineInput}" MaxLength="500" MinHeight="66"
+                             TextWrapping="Wrap" AcceptsReturn="True"/>
+
+                    <TextBlock Text="完成方式" Style="{StaticResource SmallMutedText}" Margin="2,18,0,6"/>
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton x:Name="ModeSubmit" Style="{StaticResource FilterChip}" GroupName="EditMode" Content="提交" Tag="submit"
+                                     IsChecked="True" Checked="Mode_Checked" Margin="0,0,7,0"/>
+                        <RadioButton x:Name="ModeDuration" Style="{StaticResource FilterChip}" GroupName="EditMode" Content="时长" Tag="duration"
+                                     Checked="Mode_Checked" Margin="0,0,7,0"/>
+                        <RadioButton x:Name="ModeVariation" Style="{StaticResource FilterChip}" GroupName="EditMode" Content="变化" Tag="variation"
+                                     Checked="Mode_Checked"/>
+                    </StackPanel>
+                    <TextBlock x:Name="ModeHint" Style="{StaticResource SmallMutedText}" Margin="2,9,0,0" TextWrapping="Wrap"/>
+
+                    <StackPanel x:Name="DurationPanel" Margin="0,16,0,0" Visibility="Collapsed">
+                        <TextBlock Text="目标时长（分钟）" Style="{StaticResource SmallMutedText}" Margin="2,0,0,6"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="DurationBox" Style="{StaticResource InputBox}" Text="25"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
+                                <Button Style="{StaticResource SoftButton}" Content="15" Padding="10,6" Margin="0,0,5,0" Click="QuickMinutes_Click" Tag="15"/>
+                                <Button Style="{StaticResource SoftButton}" Content="25" Padding="10,6" Margin="0,0,5,0" Click="QuickMinutes_Click" Tag="25"/>
+                                <Button Style="{StaticResource SoftButton}" Content="45" Padding="10,6" Margin="0,0,5,0" Click="QuickMinutes_Click" Tag="45"/>
+                                <Button Style="{StaticResource SoftButton}" Content="60" Padding="10,6" Click="QuickMinutes_Click" Tag="60"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel x:Name="VariationPanel" Margin="0,16,0,0" Visibility="Collapsed">
+                        <TextBlock Text="目标变化" Style="{StaticResource SmallMutedText}" Margin="2,0,0,6"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="140"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="目标数值" Style="{StaticResource SmallMutedText}" Margin="2,0,0,5"/>
+                                <TextBox x:Name="VariationTargetBox" Style="{StaticResource InputBox}" Text="10"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="单位" Style="{StaticResource SmallMutedText}" Margin="2,0,0,5"/>
+                                <TextBox x:Name="UnitBox" Style="{StaticResource InputBox}" Text="次" MaxLength="8"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <TextBlock Text="截止日期（可选）" Style="{StaticResource SmallMutedText}" Margin="2,18,0,6"/>
+                    <TextBox x:Name="DueBox" Style="{StaticResource InputBox}" MaxLength="10"/>
+                    <TextBlock Text="示例 2026-11-05，留空不限。" Style="{StaticResource SmallMutedText}" Margin="2,5,0,0"/>
+
+                    <TextBlock x:Name="ErrorText" Foreground="{DynamicResource DangerBrush}" FontSize="12" Margin="2,14,0,0" Visibility="Collapsed" TextWrapping="Wrap"/>
+                    <Border Height="14"/>
+                </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.Row="2" Margin="26,14,26,22">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource GhostButton}" Content="取消" Margin="0,0,8,0" Click="Cancel_Click"/>
+                    <Button x:Name="SaveButton" Style="{StaticResource PrimaryButton}" Content="创建计划" Click="Save_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
